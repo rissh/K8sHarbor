@@ -1,0 +1,14 @@
+# Service configuration to expose the web application externally
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+spec:
+  selector:
+    app: webapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000 # Port to forward traffic to in the pods
+  type: LoadBalancer # Expose service externally

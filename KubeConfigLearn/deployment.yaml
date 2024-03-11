@@ -1,0 +1,21 @@
+# Deployment configuration for the web application
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp-container
+          image: littlemonster23/express-node-app:0.0.2 # Replace with your image link and tag
+          ports:
+            - containerPort: 3000 # Port on which the container listens
