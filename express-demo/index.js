@@ -1,17 +1,21 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send('Your React app is running!');
+let server; // To hold a reference to the server instance
+
+app.get("/", (req, res) => {
+  res.send("Your React app is running!");
 });
 
-app.get('/exit', (req, res) => {
-    // Perform actions to stop the server or any other desired actions
-    res.send('Server stopped');
-    process.exit(0); // This stops the server (not recommended in production)
+app.get("/exit", (req, res) => {
+  // Perform actions to stop the server or any other desired actions
+  res.send("Server stopping...");
+  server.close(() => {
+    console.log("Server stopped");
+  });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+server = app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
