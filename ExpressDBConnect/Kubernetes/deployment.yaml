@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-mongodb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-mongodb-app
+  template:
+    metadata:
+      labels:
+        app: express-mongodb-app
+    spec:
+      containers:
+        - name: express-mongodb-app
+          image: littlemonster23/express-mongodb-app:0.0.1
+          ports:
+            - containerPort: 3000
+          # Add any additional environment variables or volume mounts if needed
